@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 const TrafficLightSimulator = () => {
+  const [activeLight, setActiveLight] = useState("red");
+
+  const getLightStyle = (color) => ({
+    ...styles.light,
+    backgroundColor: color,
+    opacity: activeLight === color ? 1 : 0.3,
+    boxShadow: activeLight === color ? `0 0 20px 5px ${color}` : "none",
+    transition: "all 0.5s ease"
+  });
+
   return (
     <div style={styles.wrapper}>
       <div style={styles.container}>
-        <div style={{ ...styles.light, backgroundColor: 'red' }}></div>
-        <div style={{ ...styles.light, backgroundColor: 'yellow' }}></div>
-        <div style={{ ...styles.light, backgroundColor: 'green' }}></div>
+        <div style={getLightStyle("red")}></div>
+        <div style={getLightStyle("yellow")}></div>
+        <div style={getLightStyle("green")}></div>
       </div>
     </div>
   );
@@ -14,28 +24,26 @@ const TrafficLightSimulator = () => {
 
 const styles = {
   wrapper: {
-    height: '100vh',
-    width: '100vw',
-    backgroundColor: '#111',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: "100vh",
+    width: "100vw",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   },
   container: {
-    width: '100px',
-    backgroundColor: '#333',
-    padding: '20px',
-    borderRadius: '20px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '15px',
+    width: "100px",
+    backgroundColor: "#333",
+    padding: "20px",
+    borderRadius: "20px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "15px"
   },
   light: {
-    width: '60px',
-    height: '60px',
-    borderRadius: '50%',
-    opacity: 0.3,
+    width: "60px",
+    height: "60px",
+    borderRadius: "50%"
   }
 };
 
