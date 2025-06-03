@@ -1,7 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const TrafficLightSimulator = () => {
-  const [activeLight, setActiveLight] = useState("red");
+  const lights = ["yellow", "green", "red"];
+  const [activeLight, setActiveLight] = useState("yellow");
+
+  useEffect(() => {
+    let index = 0;
+
+    const interval = setInterval(() => {
+      index = (index + 1) % lights.length;
+      setActiveLight(lights[index]);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const getLightStyle = (color) => ({
     ...styles.light,
