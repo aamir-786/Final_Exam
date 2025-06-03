@@ -20,14 +20,15 @@ const TrafficLightSimulator = () => {
     return {
       ...styles.light,
       backgroundColor: isActive ? lightColor : "#999999",
-      opacity: isActive ? 1 : 0.3,
+      opacity: isActive ? 1 : 0.15,
       boxShadow: isActive ? `0 0 25px 15px ${lightColor}` : "none",
-      transition: "all 0.5s ease"
+      transition: "all 0.3s ease"
     };
   };
 
   return (
     <div style={styles.wrapper}>
+      <h1 style={styles.heading}>Traffic Light Simulator</h1>
       <div style={styles.container}>
         <div style={getLightStyle("red")}></div>
         <div style={getLightStyle("yellow")}></div>
@@ -42,8 +43,16 @@ const styles = {
     height: "100vh",
     width: "100vw",
     display: "flex",
+    flexDirection: "column",  // stack heading and container vertically
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    gap: "30px" // space between heading and lights
+  },
+  heading: {
+    color: "#fff",
+    fontSize: "24px",
+    fontFamily: "Arial, sans-serif",
+    margin: 0
   },
   container: {
     width: "100px",
