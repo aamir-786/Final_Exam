@@ -15,20 +15,23 @@ const TrafficLightSimulator = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const getLightStyle = (color) => ({
-    ...styles.light,
-    backgroundColor: color,
-    opacity: activeLight === color ? 1 : 0.3,
-    boxShadow: activeLight === color ? `0 0 25px 10px ${color}` : "none",
-    transition: "all 0.5s ease"
-  });
+  const getLightStyle = (lightColor) => {
+    const isActive = activeLight === lightColor;
+    return {
+      ...styles.light,
+      backgroundColor: isActive ? lightColor : "#999999",
+      opacity: isActive ? 1 : 0.3,
+      boxShadow: isActive ? `0 0 25px 15px ${lightColor}` : "none",
+      transition: "all 0.5s ease"
+    };
+  };
 
   return (
     <div style={styles.wrapper}>
       <div style={styles.container}>
-        <div style={getLightStyle("#999999")}></div>
-        <div style={getLightStyle("#999999")}></div>
-        <div style={getLightStyle("#999999")}></div>
+        <div style={getLightStyle("red")}></div>
+        <div style={getLightStyle("yellow")}></div>
+        <div style={getLightStyle("green")}></div>
       </div>
     </div>
   );
